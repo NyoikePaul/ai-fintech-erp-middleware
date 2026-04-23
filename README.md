@@ -142,3 +142,4 @@ graph LR
     C -->|Context| D
     D -->|Insights| A
 \`\`\`
+<img width="1366" height="645" alt="image" src="https://github.com/user-attachments/assets/5d1054ba-1c98-46a1-8974-d8ea9f168d25" />
