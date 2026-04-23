@@ -1,28 +1,15 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from api.routes import payments, ai_chat, erp_sync
+from api.routes.payments import router as payments_router
+from api.routes.ai_chat import router as ai_chat_router
+from api.routes.erp_sync import router as erp_sync_router
 
-app = FastAPI(
-    title="AI-Fintech ERP Middleware",
-    description="Enterprise-grade bridge between M-Pesa, Odoo, and OpenAI RAG.",
-    version="1.0.0",
-    docs_url="/debug/docs" # Obfuscating default docs for a bit of 'senior' security
-)
+app = FastAPI(title="BiasharaOS API")
 
-# Standard CORS for Fintech/SaaS web environments
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Mount routers with clean, logical prefixes
+app.include_router(payments_router, prefix="/api/v1/payments")
+app.include_router(ai_chat_router, prefix="/api/v1/ai")
+app.include_router(erp_sync_router, prefix="/api/v1/erp")
 
-# Include Domain Routers
-app.include_router(payments.router, prefix="/api/v1")
-app.include_router(ai_chat.router, prefix="/api/v1")
-app.include_router(erp_sync.router, prefix="/api/v1")
-
-@app.get("/health", tags=["Infrastructure"])
+@app.get("/health")
 async def health_check():
-    """Liveness probe for Docker/K8s."""
-    return {"status": "healthy", "service": "middleware-api"}
+    return {"status": "healthy", "version": "0.1.0"}
