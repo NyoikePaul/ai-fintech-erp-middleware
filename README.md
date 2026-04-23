@@ -1,4 +1,4 @@
-# AI-Fintech ERP Middleware ⚡
+# AI-Fintech ERP Middleware 
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-009688.svg)](https://fastapi.tiangolo.com/)
@@ -6,24 +6,24 @@
 
 **AI-Fintech ERP Middleware** is a high-performance bridge designed to connect African Fintech gateways (M-Pesa, Stripe) and Enterprise Resource Planning (ERP) systems (Odoo v16/v17) via intelligent AI agents.
 
-## 🎯 Project Vision
+##  Project Vision
 Traditional ERP integrations in emerging markets are often brittle and manual. This middleware provides a production-ready, automated lifecycle: from **M-Pesa STK Push** triggers to automated ledger reconciliation in **Odoo**, supercharged by a **RAG (Retrieval-Augmented Generation)** agent for natural language financial reporting.
 
-## 🚀 Core Features
+##  Core Features
 * **Fintech Gateway:** Idempotent M-Pesa Daraja API integration (STK Push, C2B) with automated webhook verification.
 * **ERP Synchronization:** Bi-directional XML-RPC connector for Odoo ledger reconciliation.
 * **AI Financial Assistant:** Embedded LangChain agent using `pgvector` to query transaction history in natural language.
 * **Enterprise Architecture:** Domain-Driven Design (DDD) with strict Pydantic v2 validation and JWT security.
 * **DevOps Ready:** Built for cloud-native deployment with multi-stage Docker builds.
 
-## 🛠 Tech Stack
+##  Tech Stack
 * **Core:** Python 3.11, FastAPI
 * **Database:** PostgreSQL with `pgvector`
 * **AI/LLM:** LangChain, OpenAI GPT-4
 * **ERP:** Odoo v16/v17 (XML-RPC)
 * **Infrastructure:** Docker, Makefile automation
 
-## ⚡ Quick Start
+##  Quick Start
 
 ### Prerequisites
 * Docker & Docker Compose
@@ -31,29 +31,29 @@ Traditional ERP integrations in emerging markets are often brittle and manual. T
 
 ### Installation
 1.  **Clone the repository:**
-    ```bash
+    ``bash
     git clone [https://github.com/NyoikePaul/ai-fintech-erp-middleware.git](https://github.com/NyoikePaul/ai-fintech-erp-middleware.git)
     cd ai-fintech-erp-middleware
     ```
 2.  **Environment Setup:**
-    ```bash
+    ``bash
     cp .env.example .env
     # Configure your M-Pesa and Odoo credentials in .env
     ```
 3.  **Launch Services:**
-    ```bash
+    ``bash
     make docker-up
     ```
 
-## 🗺 Roadmap
+##  Roadmap
 - [ ] KRA eTIMS compliance automation for Kenyan markets.
 - [ ] Stripe Payment Intent integration.
 - [ ] Multi-tenant support for BiasharaOS scale-out.
 
-## 🤝 Contributing
+##  Contributing
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 🧱 Architecture Diagram
+##  Architecture Diagram
 \`\`\`mermaid
 graph TD
     A[Client Request] -->|STK Push| B(FastAPI Middleware)
@@ -66,7 +66,7 @@ graph TD
     G -->|Response| A
 \`\`\`
 
-## 🛠 Usage Examples
+##  Usage Examples
 
 ### Trigger M-Pesa STK Push
 \`\`\`bash
@@ -85,7 +85,7 @@ curl -X 'POST' \
 **Query:** *"Show me all successful M-Pesa transactions above 5000 KES from last week."*
 **Agent Logic:** The RAG agent converts this to SQL, queries the `pgvector` enabled database, and returns a natural language summary of the Odoo reconciliation status.
 
-## 🧱 System Architecture
+##  System Architecture
 \`\`\`mermaid
 graph TD
     User((Client/User)) -->|STK Push Request| API[FastAPI Middleware]
@@ -98,7 +98,7 @@ graph TD
     AI -->|Natural Language Insight| User
 \`\`\`
 
-## 🛠 Expert Usage Examples
+##  Expert Usage Examples
 
 ### 1. Triggering an M-Pesa STK Push
 Use this to initiate a real-time payment request to a customer's handset.
@@ -118,7 +118,7 @@ Ask the middleware about your Odoo ledger data.
 **Prompt:** *"Show me the total revenue reconciled from M-Pesa in the last 48 hours."*
 **Agent Action:** The RAG agent queries the `pgvector` store, matches receipts to Odoo entries, and returns a formatted summary.
 
-## 🧱 Enterprise Architecture
+##  Enterprise Architecture
 This middleware acts as the intelligent orchestration layer between fintech gateways and ERP ledgers.
 
 \`\`\`mermaid
