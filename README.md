@@ -84,3 +84,36 @@ curl -X 'POST' \
 ### Sample AI Query
 **Query:** *"Show me all successful M-Pesa transactions above 5000 KES from last week."*
 **Agent Logic:** The RAG agent converts this to SQL, queries the `pgvector` enabled database, and returns a natural language summary of the Odoo reconciliation status.
+
+## 🧱 System Architecture
+\`\`\`mermaid
+graph TD
+    User((Client/User)) -->|STK Push Request| API[FastAPI Middleware]
+    API -->|Async Auth| MPESA[M-Pesa Daraja Gateway]
+    MPESA -->|Webhook Callback| API
+    API -->|Background Task| ODOO{Odoo Sync Service}
+    ODOO -->|XML-RPC| ERP[Odoo ERP v16/17]
+    API -->|Embeddings| VEC[(pgvector Database)]
+    VEC -->|Context Retrieval| AI[LangChain RAG Agent]
+    AI -->|Natural Language Insight| User
+\`\`\`
+
+## 🛠 Expert Usage Examples
+
+### 1. Triggering an M-Pesa STK Push
+Use this to initiate a real-time payment request to a customer's handset.
+\`\`\`bash
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/payments/mpesa/stkpush' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "phone": "2547XXXXXXXX",
+  "amount": 1,
+  "reference": "INV-2026-001"
+}'
+\`\`\`
+
+### 2. Natural Language Financial Query (AI Agent)
+Ask the middleware about your Odoo ledger data.
+**Prompt:** *"Show me the total revenue reconciled from M-Pesa in the last 48 hours."*
+**Agent Action:** The RAG agent queries the `pgvector` store, matches receipts to Odoo entries, and returns a formatted summary.
