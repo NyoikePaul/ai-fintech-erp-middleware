@@ -52,3 +52,35 @@ Traditional ERP integrations in emerging markets are often brittle and manual. T
 
 ## 🤝 Contributing
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 🧱 Architecture Diagram
+\`\`\`mermaid
+graph TD
+    A[Client Request] -->|STK Push| B(FastAPI Middleware)
+    B -->|Async Task| C{Odoo Sync}
+    B -->|Webhook| D[M-Pesa Gateway]
+    D -->|Callback| B
+    C -->|XML-RPC| E[Odoo ERP]
+    B -->|Embeddings| F[(pgvector DB)]
+    F -->|Context| G[AI RAG Agent]
+    G -->|Response| A
+\`\`\`
+
+## 🛠 Usage Examples
+
+### Trigger M-Pesa STK Push
+\`\`\`bash
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/payments/mpesa/stkpush' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "phone": "2547XXXXXXXX",
+  "amount": 1,
+  "reference": "ORDER-101"
+}'
+\`\`\`
+
+### Sample AI Query
+**Query:** *"Show me all successful M-Pesa transactions above 5000 KES from last week."*
+**Agent Logic:** The RAG agent converts this to SQL, queries the `pgvector` enabled database, and returns a natural language summary of the Odoo reconciliation status.
