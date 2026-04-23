@@ -117,3 +117,28 @@ curl -X 'POST' \
 Ask the middleware about your Odoo ledger data.
 **Prompt:** *"Show me the total revenue reconciled from M-Pesa in the last 48 hours."*
 **Agent Action:** The RAG agent queries the `pgvector` store, matches receipts to Odoo entries, and returns a formatted summary.
+
+## 🧱 Enterprise Architecture
+This middleware acts as the intelligent orchestration layer between fintech gateways and ERP ledgers.
+
+\`\`\`mermaid
+graph LR
+    subgraph "External Systems"
+    M[M-Pesa Daraja]
+    O[Odoo ERP v16/17]
+    end
+
+    subgraph "Core Middleware"
+    A[FastAPI Gateway]
+    B[Background Tasks]
+    C[(pgvector Store)]
+    D[AI RAG Agent]
+    end
+
+    M -->|Webhooks| A
+    A -->|Async Process| B
+    B -->|XML-RPC| O
+    A -->|Embeddings| C
+    C -->|Context| D
+    D -->|Insights| A
+\`\`\`
