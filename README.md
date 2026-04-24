@@ -144,4 +144,6 @@ graph LR
 \`\`\`
 <img width="1366" height="645" alt="image" src="https://github.com/user-attachments/assets/5d1054ba-1c98-46a1-8974-d8ea9f168d25" />
 <img width="1366" height="686" alt="image" src="https://github.com/user-attachments/assets/43ad7e8e-9178-4dd4-b274-ec1176dcd164" />
+<img width="3247" height="1377" alt="deepseek_mermaid_20260424_55f148" src="https://github.com/user-attachments/assets/544b4feb-5342-4236-bff9-767a756e98aa" />
+
 
