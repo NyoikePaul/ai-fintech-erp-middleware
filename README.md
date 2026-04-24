@@ -147,6 +147,7 @@ graph LR
 <img width="1366" height="686" alt="image" src="https://github.com/user-attachments/assets/43ad7e8e-9178-4dd4-b274-ec1176dcd164" />
 
 **Architecture Overview**
-<img width="3247" height="1377" alt="deepseek_mermaid_20260424_55f148" src="https://github.com/user-attachments/assets/544b4feb-5342-4236-bff9-767a756e98aa" />
+<img width="7173" height="3355" alt="deepseek_mermaid_20260424_ef6739(1)" src="https://github.com/user-attachments/assets/d641341a-f192-4ae2-8c09-b24111b89d3d" />
+
 
 
